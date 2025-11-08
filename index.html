@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de Clientes - Master Educação</title>
+    <link rel="stylesheet" href="cadastroCliente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Logo.ico" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cadastro de Clientes - Master Educação</h1>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-step active">
+                <div class="step-number">1</div>
+                <div class="step-label">Boas-vindas</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">2</div>
+                <div class="step-label">Primeiro Contato</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">3</div>
+                <div class="step-label">Dados dos Estudantes</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <div class="step-label">Ajustes Finais</div>
+            </div>
+        </div>
+
+        <form id="formularioCliente">
+            <!-- SEÇÃO 1 - BOAS-VINDAS E CPF -->
+            <div id="section1" class="form-section active">
+                <div class="introduction">
+                    <p>Oii 😁🤝 Preencha as informações abaixo para ser atendido(a) pela melhor equipe do Brasil sem precisar sair de casa!</p>
+                    <p>⚠️ <strong>Orientações:</strong></p>
+                    <ul>
+                        <li>Enviaremos o contrato em até 2 dias úteis após o preenchimento.</li>
+                        <li>Definiremos a equipe que irá te atender e enviaremos fotos dos professores.</li>
+                    </ul>
+                    <p>Bem vindo(a) à família Master</p>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="cpf" class="input-field" maxlength="14" required>
+                        <label for="cpf" class="input-label">CPF</label>
+                    </div>
+                    <span id="cpfMessage" class="cpf-message"></span>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-next" id="section1-next" disabled>Avançar</button>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 2 - DADOS DE CONTATO -->
+            <div id="section2" class="form-section">
+                <h2 class="section-title">Nosso primeiro contato</h2>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="nome" class="input-field" required>
+                        <label for="nome" class="input-label">Nome completo</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="contato" class="input-field" maxlength="15" required>
+                        <label for="contato" class="input-label">Número de contato</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="email" id="email" class="input-field" required>
+                        <label for="email" class="input-label">E-mail</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="cep" class="input-field" maxlength="9" required>
+                        <label for="cep" class="input-label">Digite seu CEP</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="endereco" class="input-field" required>
+                        <label for="endereco" class="input-label">Endereço</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="cidade-uf" class="input-field" readonly>
+                        <label for="cidade-uf" class="input-label">Cidade - UF</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" id="complemento" class="input-field">
+                        <label for="complemento" class="input-label">Complemento ou ponto de referência</label>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-prev" onclick="showSection(1)">Voltar</button>
+                    <button type="button" class="btn btn-next" id="section2-next" onclick="showSection(3)">Avançar</button>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 3 - DADOS DOS ESTUDANTES -->
+            <div id="section3" class="form-section">
+                <h2 class="section-title">Dados dos Estudantes</h2>
+                
+                <div class="input-group">
+                    <div class="select-container">
+                        <select id="quantidadeEstudantes" class="input-field select-field">
+                            <option value="1">1 Estudante</option>
+                            <option value="2">2 Estudantes</option>
+                            <option value="3">3 Estudantes</option>
+                        </select>
+                        <label for="quantidadeEstudantes" class="select-label">Quantos estudantes gostaria de agendar?</label>
+                    </div>
+                </div>
+
+                <div id="estudantesContainer">
+                    <!-- Campos dos estudantes serão gerados dinamicamente aqui -->
+                </div>
+
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-prev" onclick="showSection(2)">Voltar</button>
+                    <button type="button" class="btn btn-next" id="section3-next" onclick="showSection(4)">Avançar</button>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 4 - AJUSTES FINAIS -->
+            <div id="section4" class="form-section">
+                <h2 class="section-title">Ajustes Finais</h2>
+                
+                <!-- Pergunta 01: Mesmo endereço? -->
+                <div class="input-group">
+                    <div class="select-container">
+                        <select id="mesmoEndereco" class="input-field select-field">
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                        <label for="mesmoEndereco" class="select-label">As aulas acontecerão no mesmo endereço?</label>
+                    </div>
+                </div>
+
+                <!-- Seção para endereço das aulas (inicialmente hidden) -->
+                <div id="enderecoAulasSection" class="endereco-aulas-section hidden">
+                    <h3 class="subsection-title">Endereço das Aulas</h3>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="cepAulas" class="input-field" maxlength="9">
+                            <label for="cepAulas" class="input-label">Digite o CEP do local das aulas</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="enderecoAulas" class="input-field">
+                            <label for="enderecoAulas" class="input-label">Endereço do local das aulas</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="cidadeUFAulas" class="input-field" readonly>
+                            <label for="cidadeUFAulas" class="input-label">Cidade - UF do local das aulas</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="complementoAulas" class="input-field">
+                            <label for="complementoAulas" class="input-label">Complemento ou ponto de referência</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 02: Confirma dados para NF? -->
+                <div class="input-group">
+                    <div class="select-container">
+                        <select id="confirmaNF" class="input-field select-field">
+                            <option value="sim">Sim, confirmo estas informações para emissão de NF</option>
+                            <option value="nao">Não, quero atualizar as informações da NF</option>
+                        </select>
+                        <label for="confirmaNF" class="select-label">Confirma estes dados para a emissão de NF?</label>
+                    </div>
+                </div>
+
+                <!-- Seção para dados da NF (inicialmente hidden) -->
+                <div id="dadosNFSection" class="dados-nf-section hidden">
+                    <h3 class="subsection-title">Atualize as informações que serão exibidas na NF</h3>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="nfNome" class="input-field">
+                            <label for="nfNome" class="input-label">Nome</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="nfEndereco" class="input-field">
+                            <label for="nfEndereco" class="input-label">Endereço</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="nfCpf" class="input-field" maxlength="14">
+                            <label for="nfCpf" class="input-label">CPF</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="email" id="nfEmail" class="input-field">
+                            <label for="nfEmail" class="input-label">E-mail</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-prev" onclick="showSection(3)">Voltar</button>
+                    <button type="submit" class="btn btn-submit" id="section4-submit">Finalizar Cadastro</button>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 5 - SUCESSO -->
+            <div id="section5" class="form-section success-section">
+                <h2 class="success-title">Cadastro Enviado! ✅</h2>
+                <p class="success-message">Obrigado por se cadastrar na Master Educação!</p>
+                <p class="success-message">Em breve entraremos em contato para dar continuidade ao seu atendimento.</p>
+                <div class="contact-info">
+                    Dúvidas? Entre em contato: (82) 9.8886-2575
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Template para os campos dos estudantes -->
+    <template id="estudanteTemplate">
+        <div class="estudante-group" data-estudante-index="1">
+            <h3 class="estudante-title">Estudante <span class="estudante-numero">1</span></h3>
+            
+            <div class="input-group">
+                <div class="input-container">
+                    <input type="text" class="input-field estudante-nome" required>
+                    <label class="input-label">Nome do estudante</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-container">
+                    <input type="text" class="input-field estudante-escola" required>
+                    <label class="input-label">Escola que estuda</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-container">
+                    <input type="text" class="input-field estudante-aniversario" maxlength="10" required>
+                    <label class="input-label">Aniversário do Estudante (dd/mm/yyyy)</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div class="select-container">
+                    <select class="input-field select-field estudante-serie" required>
+                        <option value="">Selecione a série</option>
+                        <option value="1º Ano">1º Ano</option>
+                        <option value="2º Ano">2º Ano</option>
+                        <option value="3º Ano">3º Ano</option>
+                        <option value="4º Ano">4º Ano</option>
+                        <option value="5º Ano">5º Ano</option>
+                        <option value="6º Ano">6º Ano</option>
+                        <option value="7º Ano">7º Ano</option>
+                        <option value="8º Ano">8º Ano</option>
+                        <option value="9º Ano">9º Ano</option>
+                        <option value="1º Ano EM">1º Ano EM</option>
+                        <option value="2º Ano EM">2º Ano EM</option>
+                        <option value="3º Ano EM">3º Ano EM</option>
+                    </select>
+                    <label class="select-label">Série que estuda</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="estudante-atendimento-especializado">
+                    <span class="checkmark"></span>
+                    O(a) aluno(a) precisa de algum atendimento especializado? (TDAH, Autismo, dislexia, entre outros)
+                </label>
+            </div>
+            
+            <div class="necessidades-especiais hidden">
+                <h4 class="subsection-title">Escolha qual necessidade específica seu filho possui para os atendimentos de suas aulas personalizadas:</h4>
+                <div class="necessidades-grid">
+                    <div class="necessidade-item" data-value="TDAH">
+                        <div class="necessidade-icon">🧠</div>
+                        <span>TDAH</span>
+                    </div>
+                    <div class="necessidade-item" data-value="TEA">
+                        <div class="necessidade-icon">🌟</div>
+                        <span>TEA</span>
+                    </div>
+                    <div class="necessidade-item" data-value="DISLEXIA">
+                        <div class="necessidade-icon">📖</div>
+                        <span>DISLEXIA</span>
+                    </div>
+                    <div class="necessidade-item" data-value="DISCALCULIA">
+                        <div class="necessidade-icon">🔢</div>
+                        <span>DISCALCULIA</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-container">
+                        <input type="text" class="input-field necessidade-outra">
+                        <label class="input-label">Caso tenha outra necessidade específica, escreva qual</label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" class="estudante-laudo">
+                        <span class="checkmark"></span>
+                        Meu filho possui o Laudo
+                    </label>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- Scripts do sistema -->
+    <script src="cadastroCliente-Animacoes.js"></script>
+    <script src="cadastroCliente-Database.js"></script>
+</body>
+</html>

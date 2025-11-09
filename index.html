@@ -245,7 +245,7 @@
             <div id="section5" class="form-section success-section">
                 <h2 class="success-title">Cadastro Enviado! ✅</h2>
                 <p class="success-message">Obrigado por se cadastrar na Master Educação!</p>
-                <p class="success-message">Em breve entraremos em contato para dar continuidade ao seu atendimento.</p>
+                <p class="success-message">Para agendar suas aulas <a href="https://marcosoliveiramaster.github.io/Master-AgendamentoAulas/" target="_blank">Clique aqui</a></p>
                 <div class="contact-info">
                     Dúvidas? Entre em contato: (82) 9.8886-2575
                 </div>
@@ -282,7 +282,7 @@
             <div class="input-group">
                 <div class="select-container">
                     <select class="input-field select-field estudante-serie" required>
-                        <option value="">Selecione a série</option>
+                        <!-- <option value="">Selecione a série</option>
                         <option value="1º Ano">1º Ano</option>
                         <option value="2º Ano">2º Ano</option>
                         <option value="3º Ano">3º Ano</option>
@@ -294,7 +294,31 @@
                         <option value="9º Ano">9º Ano</option>
                         <option value="1º Ano EM">1º Ano EM</option>
                         <option value="2º Ano EM">2º Ano EM</option>
-                        <option value="3º Ano EM">3º Ano EM</option>
+                        <option value="3º Ano EM">3º Ano EM</option> -->
+
+                        <option value="" selected disabled>Selecione a série</option>
+    
+                        <optgroup label="------ Ensino Básico --------">
+                            <option value="1º Ano Ens. Básico">1º Ano</option>
+                            <option value="2º Ano Ens. Básico">2º Ano</option>
+                            <option value="3º Ano Ens. Básico">3º Ano</option>
+                        </optgroup>
+                        
+                        <optgroup label="------ Ens. Fundamental -----">
+                            <option value="4º Ano Ens. Fundamental">4º Ano</option>
+                            <option value="5º Ano Ens. Fundamental">5º Ano</option>
+                            <option value="6º Ano Ens. Fundamental">6º Ano</option>
+                            <option value="7º Ano Ens. Fundamental">7º Ano</option>
+                            <option value="8º Ano Ens. Fundamental">8º Ano</option>
+                            <option value="9º Ano Ens. Fundamental">9º Ano</option>
+                        </optgroup>
+                        
+                        <optgroup label="--------- Ens. Médio --------">
+                            <option value="1º Ano Ens. Médio">1º Ano</option>
+                            <option value="2º Ano Ens. Médio">2º Ano</option>
+                            <option value="3º Ano Ens. Médio">3º Ano</option>
+                        </optgroup>
+                        
                     </select>
                     <label class="select-label">Série que estuda</label>
                 </div>

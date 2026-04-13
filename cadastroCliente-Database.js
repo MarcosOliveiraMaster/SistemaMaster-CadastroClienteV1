@@ -38,27 +38,20 @@ class ClienteDatabase {
                 }
             }
 
+            // ── App Check com reCAPTCHA v3 ────────────────────────────────────
+            // Inicializado antes do Firestore para garantir que toda requisição
+            // ao banco seja validada. Token renovado automaticamente.
+            if (typeof firebase.appCheck !== 'function') {
+                throw new Error('Firebase App Check não encontrado. Recarregue a página.');
+            }
+            const appCheck = firebase.appCheck();
+            appCheck.activate(
+                new firebase.appCheck.ReCaptchaV3Provider(RECAPTCHA_SITE_KEY_CLIENTES),
+                true // renovação automática do token
+            );
+
             this.firestore           = firebase.firestore();
             this.firebaseInitialized = true;
-
-            // ── App Check com reCAPTCHA v3 ────────────────────────────────────
-            // Protege o formulário público contra bots e abuso de quota.
-            // Ativo apenas em produção; em localhost o App Check não funciona
-            // com domínios não cadastrados no reCAPTCHA.
-            const isLocalhost = ['localhost', '127.0.0.1', ''].includes(
-                window.location.hostname
-            );
-            if (!isLocalhost && typeof firebase.appCheck === 'function') {
-                try {
-                    const appCheck = firebase.appCheck(this.firebaseApp);
-                    appCheck.activate(
-                        new firebase.appCheck.ReCaptchaV3Provider(RECAPTCHA_SITE_KEY_CLIENTES),
-                        true
-                    );
-                } catch (acErr) {
-                    console.warn('[ClienteDB] App Check não ativado:', acErr.message);
-                }
-            }
 
             return true;
 
